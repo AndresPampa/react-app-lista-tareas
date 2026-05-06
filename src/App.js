@@ -1,8 +1,29 @@
+import React, {useState} from 'react';
 import './App.css';
+import Header from './componentes/Header';
+import FormularioTareas from './componentes/FormularioTareas';
 
 const App = () => {
+  const [tareas, cambiarTareas] = useState([
+    {
+      id:1,
+      texto: 'lavar la ropa',
+      completada: false
+    },
+    {
+      id:2,
+      texto: 'Grabar tutorial',
+      completada: false
+    },
+  ]);
+
+  console.log(tareas);
+
   return (
-    <div>Hola Mundo!</div>
+    <div className='contenedor'>
+      <Header />
+      <FormularioTareas tareas={tareas} cambiarTareas={cambiarTareas} />
+    </div>
   );
 }
 
