@@ -24,9 +24,9 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
     const borrarTarea = (id) => {
         cambiarTareas(tareas.filter((tarea) =>{
             if(tarea.id !== id){
-                return tarea;
+                return true;
             }
-            return;
+            return false;
         }));
     }
 
@@ -34,12 +34,10 @@ const ListaTareas = ({tareas, cambiarTareas, mostrarCompletadas}) => {
         <ul className='lista-tareas'>
             {
             tareas.length > 0 ? tareas.map((tarea) => {
-                if(mostrarCompletadas){
-                    return <Tarea key={tarea.id} tarea={tarea} toggleCompletada={toggleCompletada} editarTarea={editarTarea} borrarTarea={borrarTarea} />
-                }else if(!tarea.completada){
+                if(mostrarCompletadas || !tarea.completada){
                     return <Tarea key={tarea.id} tarea={tarea} toggleCompletada={toggleCompletada} editarTarea={editarTarea} borrarTarea={borrarTarea} />
                 }
-                return;
+                return null;
             })
             : <div className='lista-tareas__mensaje'>No hay tareas</div>
             }
